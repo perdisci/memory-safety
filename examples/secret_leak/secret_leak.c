@@ -1,39 +1,47 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
-#define PRINT_ARGS 0
+#define PRINT_ARGS true
 #define BUFF_SIZE 128
 
-void init_secret() {
+void init_secret()
+{
     char secret[BUFF_SIZE];
     memset(secret, 'A', sizeof(secret));
-    secret[BUFF_SIZE-1] = '\0';
+    secret[BUFF_SIZE - 1] = '\0';
     printf("Secret has been initialized!\n");
 }
 
-void show_argument(const char *str) {
-    char x[BUFF_SIZE];
+void show_argument(const char *str)
+{
+    char x[BUFF_SIZE]; // To fix use = {0};
     int n = strlen(str);
-    if (n > 0) { 
-    	strncpy(x, str, n+1);
+    if (n > 0)
+    {
+        strncpy(x, str, sizeof(x) - 1);
+        x[sizeof(x) - 1] = '\0'; // Ensure null termination
     }
-    printf("%s\n", x);
+    printf(">>>%s<<<\n", x);
 }
 
-int main(int argc, char**argv) {
-
-    if (PRINT_ARGS) {
+int main(int argc, char **argv)
+{
+    if (PRINT_ARGS)
+    {
         printf("argc=%d\n", argc);
-	for (int i=0; i < argc; i++) {
+        for (int i = 0; i < argc; i++)
+        {
             printf("argv[%d]=%s (%ld)\n", i, argv[i], strlen(argv[i]));
-	}
+        }
     }
 
     init_secret();
-    
+
     // do something with first user-provided argument
 
-    if (argc > 1) {
+    if (argc > 1)
+    {
         show_argument(argv[1]);
     }
 
