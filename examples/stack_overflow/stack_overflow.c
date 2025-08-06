@@ -1,3 +1,7 @@
+// Working example of a stack overflow in C that can be used to execute shellcode.
+// Note: This code is for educational purposes only and should not
+// be used for malicious purposes.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
