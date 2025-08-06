@@ -1,1 +1,10 @@
-.vscode
+# IDE files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Backup files
+*.bak
+*.tmp
